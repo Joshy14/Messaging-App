@@ -14,7 +14,10 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Box from '@mui/material/Box';
-const contacts = [{name: "Sinai",pfp:"assets/image.png"}]
+import Avatar from '@mui/material/Avatar'
+import sinaPFP from './assets/sinaPFP.jpg'
+import joshPFP from './assets/joshPFP.jpg'
+const contacts = [{name: "Sinai", pfp: sinaPFP},{name: "Josh", pfp: joshPFP},{name:"David"},{name:"Montsy"},{name: "Sagel"}]
 
 
 function App() {
@@ -24,6 +27,7 @@ function App() {
     setOpen(newOpen)
   }
   const DrawerList = (
+    
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {['New Message', 'Read', 'Unread', 'Drafts'].map((text, index) => (
@@ -32,20 +36,18 @@ function App() {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon/> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text} />                                
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {[contacts[1], 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+      <List >
+        {contacts.map((text, index) => (
+          <ListItem key={text.name} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+             <Avatar sx={{margin:1.5}} alt="Sina" src={text.pfp}/ >
+              <ListItemText  sx={{ fontSize: '36px !important' }} primary={text.name} />
             </ListItemButton>
           </ListItem>
         ))}
