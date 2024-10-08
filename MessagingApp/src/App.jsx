@@ -17,6 +17,8 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar'
 import sinaPFP from './assets/sinaPFP.jpg'
 import joshPFP from './assets/joshPFP.jpg'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField';
 const contacts = [{name: "Sinai", pfp: sinaPFP},{name: "Josh", pfp: joshPFP},{name:"David"},{name:"Montsy"},{name: "Sagel"}]
 
 
@@ -28,9 +30,9 @@ function App() {
   }
   const DrawerList = (
     
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box  sx={{ width: 350, backgroundColor: '#333333', color: 'white', height:"100%"}} onClick={toggleDrawer(false)}>
       <List>
-        {['New Message', 'Read', 'Unread', 'Drafts'].map((text, index) => (
+        {['New Message'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -51,17 +53,25 @@ function App() {
             </ListItemButton>
           </ListItem>
         ))}
+        
       </List>
+       <Box>
+       <Typography>Username</Typography>
+       <Typography>joined 20 Jun 2023</Typography>
+     </Box>
     </Box>
   );
   return(
 
     <>
-      <h1>Hello world</h1>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>{DrawerList}</Drawer>
+    <Drawer sx={{
+        '& .MuiDrawer-paper': {
+          backgroundColor: '#33333', height: '100vh', width: 350, minHeight: '100vh',
+        },
+      }} variant="permanent">{DrawerList}</Drawer>
+      <TextField sx={{position: 'fixed', bottom: '0', width: "50%", justifyContent: 'center'}} id="filled-basic" label="Filled" variant="filled" />
     </>
-  )
+  ) 
 }
 
 export default App;
