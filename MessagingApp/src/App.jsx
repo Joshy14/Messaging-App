@@ -19,6 +19,11 @@ import sinaPFP from './assets/sinaPFP.jpg'
 import joshPFP from './assets/joshPFP.jpg'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid2'
+import { Card } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
+
 const contacts = [{name: "Sinai", pfp: sinaPFP},{name: "Josh", pfp: joshPFP},{name:"David"},{name:"Montsy"},{name: "Sagel"}]
 
 
@@ -28,9 +33,20 @@ function App() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen)
   }
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: '#fff',
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: 'center',
+  //   color: theme.palette.text.secondary,
+  //   ...theme.applyStyles('dark', {
+  //     backgroundColor: '#1A2027',
+  //   }),
+  // }));
   const DrawerList = (
     
     <Box  sx={{ width: 350, backgroundColor: '#333333', color: 'white', height:"100%"}} onClick={toggleDrawer(false)}>
+      
       <List>
         {['New Message'].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -44,6 +60,12 @@ function App() {
         ))}
       </List>
       <Divider />
+      <Autocomplete
+        id="searchContacts"
+        freeSolo
+        options={contacts.map((option) => option.name)}
+        renderInput={(params) => <TextField {...params} label="Search Contacts" />}
+      /> 
       <List >
         {contacts.map((text, index) => (
           <ListItem key={text.name} disablePadding>
@@ -61,16 +83,40 @@ function App() {
      </Box>
     </Box>
   );
+  
+{/**/}
   return(
-
     <>
-    <Drawer sx={{
+      <Drawer sx={{
         '& .MuiDrawer-paper': {
-          backgroundColor: '#33333', height: '100vh', width: 350, minHeight: '100vh',
+          backgroundColor: '#33333', height: '100vh', width: 350, minHeight: '100vh', position: 'absolute'
         },
       }} variant="permanent">{DrawerList}</Drawer>
-      <TextField sx={{position: 'fixed', bottom: '0', width: "50%", justifyContent: 'center'}} id="filled-basic" label="Filled" variant="filled" />
-    </>
+      <Stack direction={'row'}>
+      {/* Paper or stack for message bar*/}
+      {/* Use 'Skeleton' component while meassages are loading */}
+       <Grid container spacing={2} backgroundColor={'blue'} position={'fixed'} width={'50%'}right={'10px'} >
+        <Grid item size={6}></Grid>
+        <Grid item display={'flex'} justifyContent={'right'} alignItems={"right"} size={6} >
+          <Card display="flex" sx={{height:'4vh',width:'20vh',backgroundColor:'lightGrey'}}>
+            <Typography>Message 1</Typography>
+          </Card>
+        </Grid>
+        <Grid item size={6}>
+          <Card sx={{height:'4vh', width:'10vw',backgroundColor:'lightGreen'}}>
+            <Typography>Hello World!</Typography>
+          </Card>
+        </Grid>
+      </Grid> 
+    
+        
+
+        <Box >
+          <TextField sx={{position: 'fixed', right:'20px', bottom: '30px', width: "50%", justifyContent: 'center'}} id="filled-basic" label="Filled" variant="filled" />
+        </Box>
+      
+    </Stack>
+  </>
   ) 
 }
 
