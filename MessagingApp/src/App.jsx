@@ -23,8 +23,15 @@ import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid2'
 import { Card } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import {SignInPage} from '@toolpad/core/SignInPage'
 const contacts = [{name: "Sinai", pfp: sinaPFP},{name: "Josh", pfp: joshPFP},{name:"David"},{name:"Montsy"},{name: "Sagel"}]
+const providers = [
+  { id: 'github', name: 'GitHub' },
+  { id: 'google', name: 'Google' },
+  { id: 'facebook', name: 'Facebook' },
+  { id: 'twitter', name: 'Twitter' },
+  { id: 'linkedin', name: 'LinkedIn' },
+];
 
 
 function App() {
@@ -52,7 +59,7 @@ function App() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon/> : <MailIcon />}
+                 <InboxIcon htmlColor='white'/> 
               </ListItemIcon>
               <ListItemText primary={text} />                                
             </ListItemButton>
@@ -62,11 +69,12 @@ function App() {
       <Divider />
       <Autocomplete
         id="searchContacts"
+        color="secondary"
         freeSolo
         options={contacts.map((option) => option.name)}
-        renderInput={(params) => <TextField {...params} label="Search Contacts" />}
+        renderInput={(params) => <TextField color="primary" {...params} label="Search Contacts" />}
       /> 
-      <List >
+      <List>
         {contacts.map((text, index) => (
           <ListItem key={text.name} disablePadding>
             <ListItemButton>
@@ -87,6 +95,9 @@ function App() {
 {/**/}
   return(
     <>
+      {/* <SignInPage providers={providers}>
+
+      </SignInPage> */}
       <Drawer sx={{
         '& .MuiDrawer-paper': {
           backgroundColor: '#33333', height: '100vh', width: 350, minHeight: '100vh', position: 'absolute'
@@ -95,15 +106,15 @@ function App() {
       <Stack direction={'row'}>
       {/* Paper or stack for message bar*/}
       {/* Use 'Skeleton' component while meassages are loading */}
-       <Grid container spacing={2} backgroundColor={'blue'} position={'fixed'} width={'50%'}right={'10px'} >
+       <Grid container spacing={2}  position={'fixed'} width={'50%'}right={'10px'} >
         <Grid item size={6}></Grid>
         <Grid item display={'flex'} justifyContent={'right'} alignItems={"right"} size={6} >
-          <Card display="flex" sx={{height:'4vh',width:'20vh',backgroundColor:'lightGrey'}}>
+          <Card display="flex" sx={{height:'4vh', color:'black', width:'20vh',backgroundColor:'lightGrey'}}>
             <Typography>Message 1</Typography>
           </Card>
         </Grid>
         <Grid item size={6}>
-          <Card sx={{height:'4vh', width:'10vw',backgroundColor:'lightGreen'}}>
+          <Card sx={{height:'4vh', color:'black', width:'10vw',backgroundColor:'lightGreen'}}>
             <Typography>Hello World!</Typography>
           </Card>
         </Grid>
