@@ -23,15 +23,8 @@ import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Grid2'
 import { Card } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
-import {SignInPage} from '@toolpad/core/SignInPage'
 const contacts = [{name: "Sinai", pfp: sinaPFP},{name: "Josh", pfp: joshPFP},{name:"David"},{name:"Montsy"},{name: "Sagel"}]
-const providers = [
-  { id: 'github', name: 'GitHub' },
-  { id: 'google', name: 'Google' },
-  { id: 'facebook', name: 'Facebook' },
-  { id: 'twitter', name: 'Twitter' },
-  { id: 'linkedin', name: 'LinkedIn' },
-];
+
 
 //https://messaging-app-1-c4dg.onrender.com/
 function App() {
@@ -95,9 +88,7 @@ function App() {
 {/**/}
   return(
     <>
-      {/* <SignInPage providers={providers}>
-
-      </SignInPage> */}
+      
       <Drawer sx={{
         '& .MuiDrawer-paper': {
           backgroundColor: '#33333', height: '100vh', width: 350, minHeight: '100vh', position: 'absolute'
